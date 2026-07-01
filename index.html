@@ -9,10 +9,14 @@
 <body>
 
   <header class="soc-header">
-    <h1>SOC Security Events</h1>
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>SOC Security Console</h1>
+    </div>
     <ul class="status-indicators">
-      <li>EPS : 128</li>
-      <li>DB Status : <span class="ok">Online</span></li>
+      <li><span class="label">EPS</span><span class="value">128</span></li>
+      <li><span class="label">DB Status</span><span class="value ok">● Online</span></li>
+      <li><span class="label">Alertes actives</span><span class="value warn">7</span></li>
     </ul>
   </header>
 
@@ -31,52 +35,90 @@
           <option value="info">Info</option>
         </select>
 
+        <label for="periode">Période</label>
+        <select id="periode" name="periode">
+          <option>Dernière heure</option>
+          <option>Dernières 24h</option>
+          <option>Cette semaine</option>
+        </select>
+
         <input type="submit" value="Appliquer les filtres">
       </form>
+
+      <div class="mini-stats">
+        <div class="mini-stat critique">
+          <span class="count">12</span>
+          <span class="tag">Critique</span>
+        </div>
+        <div class="mini-stat warning">
+          <span class="count">34</span>
+          <span class="tag">Warning</span>
+        </div>
+        <div class="mini-stat info">
+          <span class="count">86</span>
+          <span class="tag">Info</span>
+        </div>
+      </div>
     </aside>
 
     <section class="events-section">
       <h2>Événements SIEM</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Horodatage</th>
-            <th>ID Événement</th>
-            <th>IP Source</th>
-            <th>Type d'Attaque</th>
-            <th>Action Parefeu</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>06:12:04</td>
-            <td>EVT-942</td>
-            <td>185.220.101.5</td>
-            <td>Brute Force SSH</td>
-            <td>Bloqué</td>
-          </tr>
-          <tr>
-            <td>06:14:37</td>
-            <td>EVT-943</td>
-            <td>91.240.118.22</td>
-            <td>Scan de Ports</td>
-            <td>Bloqué</td>
-          </tr>
-          <tr>
-            <td>06:18:52</td>
-            <td>EVT-944</td>
-            <td>45.83.67.3</td>
-            <td>Injection SQL</td>
-            <td>Autorisé</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Horodatage</th>
+              <th>ID Événement</th>
+              <th>IP Source</th>
+              <th>Type d'Attaque</th>
+              <th>Action Parefeu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>06:12:04</td>
+              <td>EVT-942</td>
+              <td>185.220.101.5</td>
+              <td>Brute Force SSH</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:14:37</td>
+              <td>EVT-943</td>
+              <td>91.240.118.22</td>
+              <td>Scan de Ports</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:18:52</td>
+              <td>EVT-944</td>
+              <td>45.83.67.3</td>
+              <td>Injection SQL</td>
+              <td><span class="badge allowed">Autorisé</span></td>
+            </tr>
+            <tr>
+              <td>06:21:10</td>
+              <td>EVT-945</td>
+              <td>103.94.190.44</td>
+              <td>DDoS Volumétrique</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:25:48</td>
+              <td>EVT-946</td>
+              <td>212.83.44.10</td>
+              <td>Phishing Payload</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
   </main>
 
   <footer class="soc-footer">
-    <p>Statut de conformité SecOps : Conforme — Dernière vérification : 06:20:00</p>
+    <p>Statut de conformité SecOps : <span class="ok">Conforme</span> — Dernière vérification : 06:20:00</p>
   </footer>
 
 </body>
