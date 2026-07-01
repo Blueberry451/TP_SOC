@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOC Security Console</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="soc-header">
+    <h1>SOC Security Events</h1>
+    <ul class="status-indicators">
+      <li>EPS : 128</li>
+      <li>DB Status : <span class="ok">Online</span></li>
+    </ul>
+  </header>
+
+  <main class="soc-main">
+
+    <aside class="filter-panel">
+      <h2>Filtres</h2>
+      <form action="#" method="get">
+        <label for="ip-filter">Adresse IP source</label>
+        <input type="text" id="ip-filter" name="ip-filter" placeholder="ex: 185.220.101.5">
+
+        <label for="criticite">Niveau de criticité</label>
+        <select id="criticite" name="criticite">
+          <option value="critique">Critique</option>
+          <option value="warning">Warning</option>
+          <option value="info">Info</option>
+        </select>
+
+        <input type="submit" value="Appliquer les filtres">
+      </form>
+    </aside>
+
+    <section class="events-section">
+      <h2>Événements SIEM</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Horodatage</th>
+            <th>ID Événement</th>
+            <th>IP Source</th>
+            <th>Type d'Attaque</th>
+            <th>Action Parefeu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>06:12:04</td>
+            <td>EVT-942</td>
+            <td>185.220.101.5</td>
+            <td>Brute Force SSH</td>
+            <td>Bloqué</td>
+          </tr>
+          <tr>
+            <td>06:14:37</td>
+            <td>EVT-943</td>
+            <td>91.240.118.22</td>
+            <td>Scan de Ports</td>
+            <td>Bloqué</td>
+          </tr>
+          <tr>
+            <td>06:18:52</td>
+            <td>EVT-944</td>
+            <td>45.83.67.3</td>
+            <td>Injection SQL</td>
+            <td>Autorisé</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer class="soc-footer">
+    <p>Statut de conformité SecOps : Conforme — Dernière vérification : 06:20:00</p>
+  </footer>
+
+</body>
+</html>
