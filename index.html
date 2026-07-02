@@ -3,58 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Infratech-Guest — Portail Captif Wi-Fi</title>
+  <title>SOC Security Console</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="captive-container">
+  <header class="soc-header">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>SOC Security Console</h1>
+    </div>
+    <ul class="status-indicators">
+      <li><span class="label">EPS</span><span class="value">128</span></li>
+      <li><span class="label">DB Status</span><span class="value ok">● Online</span></li>
+      <li><span class="label">Alertes actives</span><span class="value warn">7</span></li>
+    </ul>
+  </header>
 
-    <!-- Colonne illustration : masquée sur mobile via display:none -->
-    <section class="illustration-panel">
-      <div class="brand-mark">Infratech<span>.</span></div>
-      <h1 class="security-title">Consignes de sécurité physique</h1>
-      <p class="security-text">
-        L'accès au Data Center est strictement réservé au personnel autorisé.
-        Le port du badge est obligatoire en toute circonstance, y compris dans
-        les zones communes. Toute personne non accompagnée doit être signalée
-        immédiatement à l'accueil.
-      </p>
-      <ul class="security-rules">
-        <li>Badge visible en permanence</li>
-        <li>Aucun appareil photo en salle serveurs</li>
-        <li>Portes toujours refermées derrière vous</li>
-        <li>Visiteurs accompagnés uniquement</li>
-      </ul>
-    </section>
+  <main class="soc-main">
 
-    <!-- Colonne formulaire : toujours visible -->
-    <section class="form-panel">
-      <div class="form-card">
-        <div class="wifi-icon">📶</div>
-        <h2 class="portal-title">Bienvenue sur Infratech-Guest</h2>
-        <p class="portal-subtitle">Authentifiez-vous pour accéder à Internet</p>
+    <aside class="filter-panel">
+      <h2>Filtres</h2>
+      <form action="#" method="get">
+        <label for="ip-filter">Adresse IP source</label>
+        <input type="text" id="ip-filter" name="ip-filter" placeholder="ex: 185.220.101.5">
 
-        <form action="#" method="post">
-          <label for="username">Identifiant</label>
-          <input type="text" id="username" name="username" placeholder="ex: invite.dupont">
+        <label for="criticite">Niveau de criticité</label>
+        <select id="criticite" name="criticite">
+          <option value="critique">Critique</option>
+          <option value="warning">Warning</option>
+          <option value="info">Info</option>
+        </select>
 
-          <label for="password">Code temporaire</label>
-          <input type="password" id="password" name="password" placeholder="Code fourni à l'accueil">
+        <label for="periode">Période</label>
+        <select id="periode" name="periode">
+          <option>Dernière heure</option>
+          <option>Dernières 24h</option>
+          <option>Cette semaine</option>
+        </select>
 
-          <label class="checkbox-line">
-            <input type="checkbox" id="charte" name="charte">
-            <span>J'accepte la <a href="#">charte informatique</a> de l'entreprise</span>
-          </label>
+        <input type="submit" value="Appliquer les filtres">
+      </form>
 
-          <input type="submit" value="Se connecter au réseau">
-        </form>
+      <div class="mini-stats">
+        <div class="mini-stat critique">
+          <span class="count">12</span>
+          <span class="tag">Critique</span>
+        </div>
+        <div class="mini-stat warning">
+          <span class="count">34</span>
+          <span class="tag">Warning</span>
+        </div>
+        <div class="mini-stat info">
+          <span class="count">86</span>
+          <span class="tag">Info</span>
+        </div>
+      </div>
+    </aside>
 
-        <p class="help-text">Besoin d'aide ? Contactez l'accueil au poste 4200.</p>
+    <section class="events-section">
+      <h2>Événements SIEM</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Horodatage</th>
+              <th>ID Événement</th>
+              <th>IP Source</th>
+              <th>Type d'Attaque</th>
+              <th>Action Parefeu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>06:12:04</td>
+              <td>EVT-942</td>
+              <td>185.220.101.5</td>
+              <td>Brute Force SSH</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:14:37</td>
+              <td>EVT-943</td>
+              <td>91.240.118.22</td>
+              <td>Scan de Ports</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:18:52</td>
+              <td>EVT-944</td>
+              <td>45.83.67.3</td>
+              <td>Injection SQL</td>
+              <td><span class="badge allowed">Autorisé</span></td>
+            </tr>
+            <tr>
+              <td>06:21:10</td>
+              <td>EVT-945</td>
+              <td>103.94.190.44</td>
+              <td>DDoS Volumétrique</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+            <tr>
+              <td>06:25:48</td>
+              <td>EVT-946</td>
+              <td>212.83.44.10</td>
+              <td>Phishing Payload</td>
+              <td><span class="badge blocked">Bloqué</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-  </div>
+  </main>
+
+  <footer class="soc-footer">
+    <p>Statut de conformité SecOps : <span class="ok">Conforme</span> — Dernière vérification : 06:20:00</p>
+  </footer>
 
 </body>
 </html>
